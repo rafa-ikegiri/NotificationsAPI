@@ -1,0 +1,21 @@
+# Visual Studio
+.vs/
+.vscode/
+
+# Build
+bin/
+obj/
+
+# Logs
+logs/
+
+# User files
+*.user
+*.suo
+
+# Docker
+docker-data/
+
+# Windows
+Thumbs.db
+Desktop.ini

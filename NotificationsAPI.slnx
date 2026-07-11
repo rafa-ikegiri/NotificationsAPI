@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/k8s/">
+    <File Path="configmap.yaml" />
+    <File Path="deployment.yaml" />
+    <File Path="secret.yaml" />
+    <File Path="service.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path="Dockerfile.txt" />
+  </Folder>
+  <Project Path="NotificationsAPI.API/NotificationsAPI.API.csproj" />
+  <Project Path="NotificationsAPI.Application/NotificationsAPI.Application.csproj" />
+  <Project Path="NotificationsAPI.Contracts/NotificationsAPI.Contracts.csproj" />
+  <Project Path="NotificationsAPI.Domain/NotificationsAPI.Domain.csproj" />
+  <Project Path="NotificationsAPI.Infrastructure/NotificationsAPI.Infrastructure.csproj" />
+</Solution>
