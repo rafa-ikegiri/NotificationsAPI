@@ -1,19 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Força o SDK a ignorar a validação do .NET 10 -->
+    <_FunctionsSkipFrameworkCheck>true</_FunctionsSkipFrameworkCheck>
+    <FunctionsSkipFrameworkCheck>true</FunctionsSkipFrameworkCheck>
+    <ValidateTargetFramework>false</ValidateTargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="*" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.RabbitMQ" Version="*" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Mantendo as referências das suas camadas intactas -->
     <ProjectReference Include="..\NotificationsAPI.Application\NotificationsAPI.Application.csproj" />
     <ProjectReference Include="..\NotificationsAPI.Infrastructure\NotificationsAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\NotificationsAPI.Contracts\NotificationsAPI.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

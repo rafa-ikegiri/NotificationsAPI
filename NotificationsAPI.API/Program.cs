@@ -1,31 +1,14 @@
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using NotificationsAPI.Infrastructure.DependencyInjection; // Mantém a sua injeção
 
-using NotificationsAPI.Infrastructure.DependencyInjection;
-using NotificationsAPI.Infrastructure.Messaging;
+var host = new HostBuilder()
+    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureServices(services =>
+    {
+        // Injetando as dependências da sua camada de infraestrutura
+        services.AddInfrastructure();
+    })
+    .Build();
 
-
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddInfrastructure();
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-    app.MapOpenApi();
-
-
-app.UseHttpsRedirection();
-
-
-var paymentConsumer =
-    app.Services.GetRequiredService<PaymentProcessedConsumer>();
-
-paymentConsumer.Start();
-
-var userConsumer =
-    app.Services.GetRequiredService<UserCreatedConsumer>();
-
-userConsumer.Start();
-
-app.Run();
-
+host.Run();
